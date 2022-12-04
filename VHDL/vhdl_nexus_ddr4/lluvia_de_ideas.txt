@@ -1,0 +1,25 @@
+//////////////////////////////////////
+Nomenclatura:
+Variables E/S en mayúsculas
+Variables intermedias en minúsculas
+entidades/arquitecturas en mayúsculas
+codigo en general minúscula
+Sangrado: 1 Tab por jerarquía
+//////////////////////////////////////
+////////////////
+Simbología:
+C --> Correcto
+E --> Error
+U --> Undefined
+////////////////
+
+Notas e ideas:
+-Máximo 10 botones.
+-Obligatorio añadir, 4 botones para pasar al juego.
+-Display del nombre (GUESS900) antes de poner el primer botón de la contraseña, Leds de debajo tambien.
+-Modo de juego: adivinar sonidos
+-Al ganar todo brilla (y suena)
+-Reset lleva al inicio
+-Switches con event
+
+

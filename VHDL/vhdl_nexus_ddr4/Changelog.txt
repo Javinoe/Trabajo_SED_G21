@@ -1,0 +1,43 @@
+////////////////////////////////////////////////////////
+Plantilla de Changelog de entidades:
+
+Entidad_De_Ejemplo.vhdl:
+V x.xx
+Se explican los cambios realizados en la version x.xx
+V y.yy
+Se explican los cambios realizados en la version y.yy
+V z.zz
+Se explican los cambios realizados en la version z.zz
+////////////////////////////////////////////////////////
+Segment_Definition.vhdl
+V 0.9
+Añadida las definiciones para el display de la placa.
+
+Segment_driver.vhdl
+V 0.7
+Driver que se encarga de actualizar el display siguiendo las definiciones.
+Necesita ser ligado al clk del sistema.
+
+Comparador.vhdl
+V x.xx
+
+Maquina_de_Estado.vhdl
+V x.xx
+
+Display.vhdl
+V x.xx
+
+Codificados.vhdl
+V x.xx
+
+LEDs.vhdl
+V x.xx
+
+RGB.vhdl
+V x.xx
+
+Sincronizador
+V x.xx
+
+edge_clkrs
+V x.xx
