@@ -70,7 +70,7 @@ begin
                         end loop;
                     end if;        
                 end loop;
-                complete <= 1;         
+                complete := 1;         
             else    
                 for count in 3 downto 0 loop
                     if answer(count) = '0' then
