@@ -8,6 +8,7 @@ entity FSM is
     CLK :           in std_logic;
     CREATEBUTTON:   in std_logic;   --Botón para entrar en el modo de creación
     BUTTONPRESSED:  in integer;     --Botón pulsado del juego
+    -- Comparator
     COMPLETE:       in std_logic;   --Se han pulsado 4 botones
     CORRECT:        in std_logic;   --Son los correctos       
     RESULT1 :       in std_logic_vector (3 downto 0);   --Respuesta del comparador
@@ -15,7 +16,8 @@ entity FSM is
     RESULT3 :       in std_logic_vector (3 downto 0);
     RESULT4 :       in std_logic_vector (3 downto 0);
     PASSWORD :      out integer;    --Botón para establecer solución
-    ANSWER :        out integer;    --Botón de respuesta del jugador     
+    ANSWER :        out integer;    --Botón de respuesta del jugador
+    -- Display     
     DISPLAY1 :      out std_logic_vector(3 downto 0);   --Indicación para el display
     DISPLAY2 :      out std_logic_vector(3 downto 0);
     DISPLAY3 :      out std_logic_vector(3 downto 0);
