@@ -92,7 +92,10 @@ begin
             RESULT3 <= results(1); 
             RESULT4 <= results(0); 
             CORRECT <= corrrect;
+            COMPLETE <= complete;
+            complete := '0';
             correct := 1;
+            results := (others => (others => 0));
         end if;
     end process;   
 end Behavioral;
