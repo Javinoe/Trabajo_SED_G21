@@ -38,43 +38,47 @@ begin
     
     create_password: process(INPUT_PASSWORD)
         begin
-        if password(0) /= '0' then
-                complete := 1;
-        else    
-            for count in 3 downto 0 loop
-                if password(count) = '0' then
-                    password(count) <= INPUT_PASSWORD;
-                end if;
-            end loop;
-        end if; 
+        if INPUT_PASSWORD /= '0' then
+            if password(0) /= '0' then
+                    complete := 1;
+            else    
+                for count in 3 downto 0 loop
+                    if password(count) = '0' then
+                        password(count) <= INPUT_PASSWORD;
+                    end if;
+                end loop;
+            end if;
+        end if;
     end process;
     
     create_answer: process(INPUT_ASNWER)
         begin
-        if answer(0) /= '0' then
-            for count in 3 downto 0 loop
-                if answer(count) = password(count) then
-                        results(count) <= "0000000";
-                else
-                    correct := '0';
-                    for count2 in 3 downto 0 loop
-                        if answer(count) = password(count2) then
-                            results(count) <= "0000001";
-                            exit;
-                        else
-                            results(count) <= "1111110";
-                        end if;
-                    end loop;
-                end if;        
-            end loop;
-            complete <= 1;         
-        else    
-            for count in 3 downto 0 loop
-                if answer(count) = '0' then
-                    answer(count) := INPUT_ANSWER;
-                end if;
-            end loop;
-        end if; 
+        if INPUT_ANSWER /= '0' then
+            if answer(0) /= '0' then
+                for count in 3 downto 0 loop
+                    if answer(count) = password(count) then
+                            results(count) <= "0000000";
+                    else
+                        correct := '0';
+                        for count2 in 3 downto 0 loop
+                            if answer(count) = password(count2) then
+                                results(count) <= "0000001";
+                                exit;
+                            else
+                                results(count) <= "1111110";
+                            end if;
+                        end loop;
+                    end if;        
+                end loop;
+                complete <= 1;         
+            else    
+                for count in 3 downto 0 loop
+                    if answer(count) = '0' then
+                        answer(count) := INPUT_ANSWER;
+                    end if;
+                end loop;
+            end if;
+        end if;
     end process;
     
     output: process (complete)
