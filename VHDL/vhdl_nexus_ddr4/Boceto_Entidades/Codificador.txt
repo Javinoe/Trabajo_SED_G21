@@ -1,0 +1,27 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity coder is
+    port (
+     entero : out std_logic_vector(3 downto 0);
+     x4, x3, x2, x1, x0 : in std_logic
+    );
+end entity;
+
+architecture coder of coder is
+signal enterox : std_logic_vector (3 downto 0);
+begin
+
+    -- Decodificamos..
+    process ( x4, x3, x2, x1, x0)
+begin 
+if    x0='1' then enterox <= "0001" ; -- 0
+elsif x1='1' then enterox <= "0010" ;   
+elsif x2='1' then enterox <= "0011" ; 
+elsif x3='1' then enterox <= "0100" ; 
+elsif x4='1' then enterox <= "0101" ; 
+        else enterox <= "0000";
+        end if;
+    end process;
+    entero <= enterox;
+end coder;
