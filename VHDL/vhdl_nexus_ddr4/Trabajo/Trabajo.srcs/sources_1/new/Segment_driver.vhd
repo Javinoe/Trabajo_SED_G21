@@ -77,11 +77,12 @@ uut1: clk_divider PORT MAP(
         reset => '0',
         data_clk => clock_word);
         
-slow_clock <= clock_word(15);
+slow_clock <= clock_word(0); --Divisor del reloj, a 0 es un calco del mismo
 
 PROCESS (slow_clock)
 variable display_selection : STD_LOGIC_VECTOR(2 downto 0);
 BEGIN
+
 
 if slow_clock'event and slow_clock = '1' then
 
@@ -189,7 +190,19 @@ when "111" => aux_data <= display_H;
     select_display_G <= '1';
     select_display_H <= '0';
     
-    display_selection := display_selection+'1';
+    display_selection := "000";
+    
+when others =>
+
+    select_display_A <= '1'; 
+    select_display_B <= '1';
+    select_display_C <= '1';
+    select_display_D <= '1';
+    select_display_E <= '1';
+    select_display_F <= '1';
+    select_display_G <= '1';
+    select_display_H <= '1';
+    display_selection := "000";
 
 end case;
 end if;
