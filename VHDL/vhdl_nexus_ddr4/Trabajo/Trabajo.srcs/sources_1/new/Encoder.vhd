@@ -1,14 +1,14 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 
-entity Coder is
+entity Encoder is
     port (
-     vbinario : out std_logic_vector(3 downto 0);
+     V_BINARIO : out std_logic_vector(3 downto 0);
      x4, x3, x2, x1, x0 : in std_logic
     );
 end entity;
 
-architecture Coder of Coder is
+architecture Encoder of Encoder is
 signal vbinariox : std_logic_vector (3 downto 0);
 begin
 
@@ -24,5 +24,5 @@ elsif x4='1' then vbinariox <= "0101" ;
         end if;
 
     end process;
-    vbinario <= vbinariox;
-end Coder;
+    V_BINARIO <= vbinariox;
+end Encoder;
