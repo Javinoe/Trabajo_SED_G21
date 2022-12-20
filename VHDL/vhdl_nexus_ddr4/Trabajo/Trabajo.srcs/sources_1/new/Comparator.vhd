@@ -26,7 +26,7 @@ architecture Behavioral of Comparator is
     type matrix2 is array (PASS_ELEMENTS downto 0) of std_logic_vector (INPUT_WIDTH downto 0);
 begin
     compare: process(INPUT_PASSWORD, INPUT_ANSWER, RESET)
-        variable counter: integer := 0;
+        variable counter: integer := PASS_ELEMENTS;
         variable password : matrix2  := (others => ( others => '0'));
         variable answer : matrix2  := (others => ( others => '0'));
         variable results : matrix := (others => ( others => '0'));
@@ -41,7 +41,7 @@ begin
             RESULT3 <= "1111"; 
             RESULT4 <= "1111";
         elsif RESET = '1' then
-            if INPUT_PASSWORD /= "000" and counter /= 0 then-- Receiving a password when it is uncompleted    
+            if INPUT_PASSWORD /= "000" and password(0) = "000" then     -- Receiving a password when it is uncompleted    
                 for count in PASS_ELEMENTS downto 0 loop                
                     if password(count) = "000" then
                         password(count) := INPUT_PASSWORD;  -- Places it in the last free slot of the array
