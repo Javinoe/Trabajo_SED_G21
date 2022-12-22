@@ -34,8 +34,8 @@ createbutton_s <= '1';
         else vbinariox <= "0000";
 createbutton_s <= '0';
         end if;
-
     end process;
     buttonpressed <= vbinariox;
     createbutton  <= createbutton_s;
 end Encoder;
+
