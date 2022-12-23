@@ -2,20 +2,20 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;    
 
 entity segmentdecoder is
-Port ( Value : in STD_LOGIC_VECTOR (3 downto 0);
-    segment_A: out STD_LOGIC;
-    segment_B: out STD_LOGIC;
-    segment_C: out STD_LOGIC;
-    segment_D: out STD_LOGIC;
-    segment_E: out STD_LOGIC;
-    segment_F: out STD_LOGIC;
-    segment_G: out STD_LOGIC);
+Port ( VALUE : in STD_LOGIC_VECTOR (3 downto 0);
+    SEGMENT_A: out STD_LOGIC;
+    SEGMENT_B: out STD_LOGIC;
+    SEGMENT_C: out STD_LOGIC;
+    SEGMENT_D: out STD_LOGIC;
+    SEGMENT_E: out STD_LOGIC;
+    SEGMENT_F: out STD_LOGIC;
+    SEGMENT_G: out STD_LOGIC);
 end segmentdecoder;
 
 architecture Behavioral of segmentdecoder is
 
 begin
-process (Value)
+process (VALUE)
 variable Decode_Data : std_logic_vector(6 downto 0);
 begin
 case Value is
@@ -38,13 +38,13 @@ case Value is
     when others => Decode_Data := "0110110"; --error
 end case;
 
-    segment_A <= Decode_Data(6);
-    segment_B <= Decode_Data(5);
-    segment_C <= Decode_Data(4);
-    segment_D <= Decode_Data(3);
-    segment_E <= Decode_Data(2);
-    segment_F <= Decode_Data(1);
-    segment_G <= Decode_Data(0);
+    SEGMENT_A <= Decode_Data(6);
+    SEGMENT_B <= Decode_Data(5);
+    SEGMENT_C <= Decode_Data(4);
+    SEGMENT_D <= Decode_Data(3);
+    SEGMENT_E <= Decode_Data(2);
+    SEGMENT_F <= Decode_Data(1);
+    SEGMENT_G <= Decode_Data(0);
 
 end process;
 end;
