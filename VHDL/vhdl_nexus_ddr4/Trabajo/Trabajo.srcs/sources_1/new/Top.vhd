@@ -146,13 +146,13 @@ Inst_comparator: Comparator PORT MAP (
 );
 Inst_segmentdriver: segmentdriver PORT MAP(
     DISPLAY_A => display1_fd,
-    DISPLAY_B => display1_fd,
-    DISPLAY_C => display1_fd, 
-    DISPLAY_D => display1_fd,
-    DISPLAY_E => display1_fd,
-    DISPLAY_F => display1_fd,
-    DISPLAY_G => display1_fd,
-    DISPLAY_H => display1_fd,
+    DISPLAY_B => display2_fd,
+    DISPLAY_C => display3_fd, 
+    DISPLAY_D => display4_fd,
+    DISPLAY_E => display5_fd,
+    DISPLAY_F => display6_fd,
+    DISPLAY_G => display7_fd,
+    DISPLAY_H => display8_fd,
     CLK => CLK
     --El resto de variables no deberían tener ningún uso en top, así que las he omitido.
     --En caso de errores ese puede ser el principal motivo, así que ojo.
