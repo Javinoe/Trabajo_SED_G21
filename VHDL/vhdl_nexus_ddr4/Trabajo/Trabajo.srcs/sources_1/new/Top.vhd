@@ -58,6 +58,34 @@ component Comparator
     );
 end component;
 
+component segmentdriver
+    port(
+    DISPLAY_A : in STD_LOGIC_VECTOR (3 downto 0);
+    DISPLAY_B : in STD_LOGIC_VECTOR (3 downto 0);
+    DISPLAY_C : in STD_LOGIC_VECTOR (3 downto 0);
+    DISPLAY_D : in STD_LOGIC_VECTOR (3 downto 0);
+    DISPLAY_E : in STD_LOGIC_VECTOR (3 downto 0);
+    DISPLAY_F : in STD_LOGIC_VECTOR (3 downto 0);
+    DISPLAY_G : in STD_LOGIC_VECTOR (3 downto 0);
+    DISPLAY_H : in STD_LOGIC_VECTOR (3 downto 0);
+    SEG_A : out STD_LOGIC;
+    SEG_B : out STD_LOGIC;
+    SEG_C : out STD_LOGIC;
+    SEG_D : out STD_LOGIC;
+    SEG_E : out STD_LOGIC;
+    SEG_F : out STD_LOGIC;
+    SEG_G : out STD_LOGIC;
+    SELECT_DISPLAY_A : out STD_LOGIC;
+    SELECT_DISPLAY_B : out STD_LOGIC;
+    SELECT_DISPLAY_C : out STD_LOGIC;
+    SELECT_DISPLAY_D : out STD_LOGIC;
+    SELECT_DISPLAY_E : out STD_LOGIC;
+    SELECT_DISPLAY_F : out STD_LOGIC;
+    SELECT_DISPLAY_G : out STD_LOGIC;
+    SELECT_DISPLAY_H : out STD_LOGIC;
+    CLK : in STD_LOGIC);
+end component;
+
 --Signals between Edge detector and FSM
 signal buttonpressed_ef: std_logic_vector (INPUT_WIDTH downto 0); --Buttons pressed during game
 signal createbutton_ef: std_logic;  --Button to entrer create mode
@@ -116,5 +144,17 @@ Inst_comparator: Comparator PORT MAP (
     COMPLETE => complete_cf,
     CORRECT => correct_cf 
 );
+Inst_segmentdriver: segmentdriver PORT MAP(
+    DISPLAY_A => display1_fd,
+    DISPLAY_B => display1_fd,
+    DISPLAY_C => display1_fd, 
+    DISPLAY_D => display1_fd,
+    DISPLAY_E => display1_fd,
+    DISPLAY_F => display1_fd,
+    DISPLAY_G => display1_fd,
+    DISPLAY_H => display1_fd,
+    CLK => CLK
+    --El resto de variables no deberían tener ningún uso en top, así que las he omitido.
+    --En caso de errores ese puede ser el principal motivo, así que ojo.
+);
 end behavioral;
-
