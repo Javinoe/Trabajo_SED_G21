@@ -1,15 +1,15 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-entity SYNCHRNZR is
+entity Synchrnzr is
     port (
     CLK : in std_logic;
     ASYNC_IN : in std_logic;
     SYNC_OUT : out std_logic
     );
-end SYNCHRNZR;
+end Synchrnzr;
 
-architecture BEHAVIORAL of SYNCHRNZR is
+architecture BEHAVIORAL of Synchrnzr is
     signal sreg : std_logic_vector(1 downto 0);
     begin
     process (CLK)
@@ -19,4 +19,4 @@ architecture BEHAVIORAL of SYNCHRNZR is
             sreg <= sreg(0) & async_in;
         end if;
     end process;
-end BEHAVIORAL;
+end Synchrnzr;
