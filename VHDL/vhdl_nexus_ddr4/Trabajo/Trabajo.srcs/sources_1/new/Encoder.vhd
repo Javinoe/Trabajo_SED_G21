@@ -3,8 +3,8 @@ use IEEE.std_logic_1164.all;
 
 entity Encoder is
     port (
-     buttonpressed : out std_logic_vector(3 downto 0);
-     createbutton :  out std_logic; 
+     BUTTONPRESSED : out std_logic_vector(3 downto 0);
+     CREATEBUTTON :  out std_logic; 
      x4, x3, x2, x1, x0 : in std_logic
     );
 end entity;
@@ -35,7 +35,7 @@ createbutton_s <= '1';
 createbutton_s <= '0';
         end if;
     end process;
-    buttonpressed <= vbinariox;
-    createbutton  <= createbutton_s;
+    BUTTONPRESSED <= vbinariox;
+    CREATEBUTTON  <= createbutton_s;
 end Encoder;
 
