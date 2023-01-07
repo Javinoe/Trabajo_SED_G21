@@ -169,7 +169,7 @@ Inst_segmentdriver: segmentdriver PORT MAP(
     DISPLAY_F => display6_fd,
     DISPLAY_G => display7_fd,
     DISPLAY_H => display8_fd,
-    CLK => CLK
+    CLK => CLK,
     SEG_A => topsegA,
     SEG_B => topsegB,
     SEG_C => topsegC,
