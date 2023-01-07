@@ -13,6 +13,22 @@ entity top is
     CLK : in std_logic;
     x4, x3, x2, x1, x0 : in std_logic;
     LIGHT : out std_logic_vector(0 TO 3)
+    --variables to segment driver
+    topsegA : out std logic;
+    topsegB : out std logic;
+    topsegC : out std logic;
+    topsegD : out std logic;
+    topsegE : out std logic;
+    topsegF : out std logic;
+    topsegG : out std logic;
+    topselect_display_A : out std logic;
+    topselect_display_B : out std logic;
+    topselect_display_C : out std logic;
+    topselect_display_D : out std logic;
+    topselect_display_E : out std logic;
+    topselect_display_F : out std logic;
+    topselect_display_G : out std logic;
+    topselect_display_H : out std logic
     );
 end top;
 
@@ -154,7 +170,20 @@ Inst_segmentdriver: segmentdriver PORT MAP(
     DISPLAY_G => display7_fd,
     DISPLAY_H => display8_fd,
     CLK => CLK
-    --El resto de variables no deberían tener ningún uso en top, así que las he omitido.
-    --En caso de errores ese puede ser el principal motivo, así que ojo.
+    SEG_A => topsegA,
+    SEG_B => topsegB,
+    SEG_C => topsegC,
+    SEG_D => topsegD,
+    SEG_E => topsegE,
+    SEG_F => topsegF,
+    SEG_G => topsegG,
+    SELECT_DISPLAY_A => topselect_display_A,
+    SELECT_DISPLAY_B => topselect_display_B,
+    SELECT_DISPLAY_C => topselect_display_C,
+    SELECT_DISPLAY_D => topselect_display_D,
+    SELECT_DISPLAY_E => topselect_display_E,
+    SELECT_DISPLAY_F => topselect_display_F,
+    SELECT_DISPLAY_G => topselect_display_G,
+    SELECT_DISPLAY_H => topselect_display_H
 );
 end behavioral;
