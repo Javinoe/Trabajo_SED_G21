@@ -1,1 +1,1 @@
-Carpeta de trabajo de la segunda parte de micro procesadores, esta carpeta contendrá la funcion individual implementada por cada mienbro + el proyecto final que aune todas las funciones.
+Carpeta de trabajo de la segunda parte de microprocesadores, esta carpeta contendrá el trabajo consistente en aplicaciones de domótica relacionadas con puertas, luces y temperatura.
