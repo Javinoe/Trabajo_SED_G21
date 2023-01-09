@@ -126,7 +126,7 @@ begin
                 DISPLAY2 <= "1111"; ---
                 DISPLAY3 <= "1111"; ---
                 DISPLAY4 <= "1111"; ---
-                DISPLAY5 <= BUTTONPRESSED; ---
+                DISPLAY5 <= "1111"; ---
                 DISPLAY6 <= "1111"; ---
                 DISPLAY7 <= "1111"; ---
                 DISPLAY8 <= "1111"; ---
