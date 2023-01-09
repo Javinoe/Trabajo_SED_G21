@@ -6,7 +6,8 @@ entity Comparator is
    	generic(
     PASS_ELEMENTS: positive := 3;     -- Number of elements in the password
     INPUT_WIDTH: positive := 3;       -- Number of input's elements
-    OUTPUT_WIDTH: positive := 3       -- Number of elements needed for output
+    OUTPUT_WIDTH: positive := 3;      -- Number of elements needed for output
+    TRIES: positive := 4              -- Number of tries
     );
     port(
     RESET :         in std_logic;
@@ -31,7 +32,8 @@ begin
         variable answer : matrix2  := (others => ( others => '0'));
         variable results : matrix := (others => ( others => '0'));
         variable complete_i : std_logic := '0';
-        variable correct_a : std_logic := '1';    
+        variable correct_a : std_logic := '1';
+        variable triesdone : integer := TRIES;              -- Tries done
     begin
         if RESET = '0' then                                 -- Reset
         	COMPLETE <= '0';
@@ -81,6 +83,11 @@ begin
                     RESULT3 <= results(1); 
                     RESULT4 <= results(0);
                     answer := (others => ( others => '0'));
+                    triesdone := triesdone - 1;
+                    if triesdone = 0 then
+                        triesdone := TRIES;
+                        password := (others => ( others => '0'));
+                    end if;
                     results := (others => (others => '0'));
                     CORRECT <= correct_a;
                     correct_a := '1';
