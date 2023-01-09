@@ -7,7 +7,7 @@ entity Comparator is
     PASS_ELEMENTS: positive := 3;     -- Number of elements in the password
     INPUT_WIDTH: positive := 3;       -- Number of input's elements
     OUTPUT_WIDTH: positive := 3;      -- Number of elements needed for output
-    TRIES: positive := 4              -- Number of tries
+    TRIES: positive := 3              -- Number of tries
     );
     port(
     RESET :         in std_logic;
@@ -42,6 +42,8 @@ begin
             RESULT2 <= "1111"; 
             RESULT3 <= "1111"; 
             RESULT4 <= "1111";
+            password := (others => ( others => '0'));
+            answer := (others => ( others => '0'));
         elsif RESET = '1' then
             if INPUT_PASSWORD /= "0000" and password(0) = "0000" then     -- Receiving a password when it is uncompleted    
                 for count in PASS_ELEMENTS downto 0 loop                

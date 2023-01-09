@@ -34,7 +34,7 @@ entity FSM is
 end FSM;
 
 architecture behavioral of fsm is
-    type STATES is (Start, Create, S3, S2, S1, S0, Lose, Victory);
+    type STATES is (Start, Create, Waiting, S3, S2, S1, S0, Lose, Victory);
     signal current_state: STATES := Start;
     signal next_state: STATES;
 begin
@@ -47,7 +47,7 @@ begin
         end if;
     end process;
 
-    nextstate_decod: process (RESET, CREATEBUTTON, COMPLETE, CORRECT, current_state)
+    nextstate_decod: process (RESET, CREATEBUTTON, COMPLETE, CORRECT, BUTTONPRESSED, current_state)
     begin
         next_state <= current_state;
         case current_state is
@@ -57,6 +57,10 @@ begin
                 end if;
             when Create =>
                 if COMPLETE = '1' then
+                    next_state <= Waiting;
+                end if;
+            when Waiting =>
+                if BUTTONPRESSED = "0000" then
                     next_state <= S3;
                 end if;
             when S3 =>

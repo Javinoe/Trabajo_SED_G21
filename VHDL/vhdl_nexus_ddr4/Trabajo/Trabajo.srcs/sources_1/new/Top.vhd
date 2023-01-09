@@ -37,54 +37,22 @@ architecture behavioral of top is
 component Synchrnzr 
     port (
     CLK : in std_logic;
-    ASYNC_IN1 : in std_logic;
-    ASYNC_IN2 : in std_logic;
-    ASYNC_IN3 : in std_logic;
-    ASYNC_IN4 : in std_logic;
-    ASYNC_IN5 : in std_logic;
-    ASYNC_IN6 : in std_logic;
-    ASYNC_IN7 : in std_logic;
-    ASYNC_IN8 : in std_logic;
-    ASYNC_IN9 : in std_logic;
-    SYNC_OUT1 : out std_logic;
-    SYNC_OUT2 : out std_logic;
-    SYNC_OUT3 : out std_logic;
-    SYNC_OUT4 : out std_logic;
-    SYNC_OUT5 : out std_logic;
-    SYNC_OUT6 : out std_logic;
-    SYNC_OUT7 : out std_logic;
-    SYNC_OUT8 : out std_logic;
-    SYNC_OUT9 : out std_logic
+    ASYNC_IN : in std_logic_vector (INPUT_WIDTH downto 0);
+    SYNC_OUT : out std_logic_vector (INPUT_WIDTH downto 0)
     );
 end component;
 
 component Edgedtctr
     port (
     CLK : in std_logic;
-    SYNC_IN1 : in std_logic;
-    SYNC_IN2 : in std_logic;
-    SYNC_IN3 : in std_logic;
-    SYNC_IN4 : in std_logic;
-    SYNC_IN5 : in std_logic;
-    SYNC_IN6 : in std_logic;
-    SYNC_IN7 : in std_logic;
-    SYNC_IN8 : in std_logic;
-    SYNC_IN9 : in std_logic;
-    EDGE1 : out std_logic;
-    EDGE2 : out std_logic;
-    EDGE3 : out std_logic;
-    EDGE4 : out std_logic;
-    EDGE5 : out std_logic;
-    EDGE6 : out std_logic;
-    EDGE7 : out std_logic;
-    EDGE8 : out std_logic;
-    EDGE9 : out std_logic
+    SYNC_IN : in std_logic_vector (INPUT_WIDTH downto 0);
+    EDGE : out std_logic_vector (INPUT_WIDTH downto 0)
     );
 end component;
 
 component Encoder
     port(
-    BUTTONPRESSED : out std_logic_vector(3 downto 0);
+    BUTTONPRESSED : out std_logic_vector (INPUT_WIDTH downto 0);
     x9 : in std_logic;
     x8 : in std_logic;
     x7 : in std_logic; 
@@ -167,29 +135,12 @@ component segmentdriver
     );
 end component;
 
+--Signals between Encoder and Synchrnzr
+signal buttonpressed_es: std_logic_vector (INPUT_WIDTH downto 0);
 --Signals between Synchrnzr  and Edge detector
-signal x9_SE :  std_logic;
-signal x8_SE :  std_logic;
-signal x7_SE :  std_logic;
-signal x6_SE :  std_logic;
-signal x5_SE :  std_logic;
-signal x4_SE :  std_logic;
-signal x3_SE :  std_logic;
-signal x2_SE :  std_logic;
-signal x1_SE :  std_logic;
---Signals between Edge detector and Encoder
-signal x9_Ee :  std_logic;
-signal x8_Ee :  std_logic;
-signal x7_Ee :  std_logic;
-signal x6_Ee :  std_logic;
-signal x5_Ee :  std_logic;
-signal x4_Ee :  std_logic;
-signal x3_Ee :  std_logic;
-signal x2_Ee :  std_logic;
-signal x1_Ee :  std_logic;
---Signals between Encoder and FSM
-signal buttonpressed_ef: std_logic_vector (INPUT_WIDTH downto 0); --Buttons pressed during game
---signal createbutton_ef: std_logic;  --Button to entrer create mode
+signal syncbutton_se: std_logic_vector (INPUT_WIDTH downto 0);
+--Signals between Edge detector and FSM
+signal buttonpressed_ef: std_logic_vector (INPUT_WIDTH downto 0);
 -- Signals between FSM and Comparator
 signal complete_cf : std_logic;
 signal correct_cf : std_logic;
@@ -210,61 +161,29 @@ signal display7_fd : std_logic_vector(OUTPUT_WIDTH downto 0);
 signal display8_fd : std_logic_vector(OUTPUT_WIDTH downto 0);
     
 begin
+Inst_encoder: Encoder PORT MAP(
+    BUTTONPRESSED => buttonpressed_es,
+    x9 => x9,
+    x8 => x8,
+    x7 => x7,
+    x6 => x6,
+    x5 => x5,
+    x4 => x4,
+    x3 => x3,
+    x2 => x2,
+    x1 => x1
+);
+
 Inst_synchrnzr: Synchrnzr PORT MAP (
     CLK => CLK,
-    ASYNC_IN1 => x1,
-    ASYNC_IN2 => x2,
-    ASYNC_IN3 => x3,
-    ASYNC_IN4 => x4,
-    ASYNC_IN5 => x5,
-    ASYNC_IN6 => x6,
-    ASYNC_IN7 => x7,
-    ASYNC_IN8 => x8,
-    ASYNC_IN9 => x9,
-    SYNC_OUT1 => x1_SE,
-    SYNC_OUT2 => x2_SE,
-    SYNC_OUT3 => x3_SE,
-    SYNC_OUT4 => x4_SE,
-    SYNC_OUT5 => x5_SE,
-    SYNC_OUT6 => x6_SE,
-    SYNC_OUT7 => x7_SE,
-    SYNC_OUT8 => x8_SE,
-    SYNC_OUT9 => x9_SE
+    ASYNC_IN => buttonpressed_es,
+    SYNC_OUT => syncbutton_se
 );
 
 Inst_edgedtctr: Edgedtctr PORT MAP (
     CLK => CLK,
-    SYNC_IN1 => x1_SE,
-    SYNC_IN2 => x2_SE,
-    SYNC_IN3 => x3_SE,
-    SYNC_IN4 => x4_SE,
-    SYNC_IN5 => x5_SE,
-    SYNC_IN6 => x6_SE,
-    SYNC_IN7 => x7_SE,
-    SYNC_IN8 => x8_SE,
-    SYNC_IN9 => x9_SE,
-    EDGE1 => x1_Ee,
-    EDGE2 => x2_Ee,
-    EDGE3 => x3_Ee,
-    EDGE4 => x4_Ee,
-    EDGE5 => x5_Ee,
-    EDGE6 => x6_Ee,
-    EDGE7 => x7_Ee,
-    EDGE8 => x8_Ee,
-    EDGE9 => x9_Ee
-);
-
-Inst_encoder: Encoder PORT MAP(
-    BUTTONPRESSED => buttonpressed_ef,
-    x9 => x9_Ee,
-    x8 => x8_Ee,
-    x7 => x7_Ee,
-    x6 => x6_Ee,
-    x5 => x5_Ee,
-    x4 => x4_Ee,
-    x3 => x3_Ee,
-    x2 => x2_Ee,
-    x1 => x1_Ee
+    SYNC_IN => syncbutton_se,
+    EDGE => buttonpressed_ef
 );
 
 Inst_FSM: FSM PORT MAP (
