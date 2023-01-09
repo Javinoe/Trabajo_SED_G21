@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 entity top is
    	generic(
     PASS_ELEMENTS: positive := 3;     -- Number of elements in the password
-    INPUT_WIDTH: positive := 2;       -- Number of input's elements
+    INPUT_WIDTH: positive := 3;       -- Number of input's elements
     OUTPUT_WIDTH: positive := 3       -- Number of elements needed for output
     );
     port (
@@ -13,23 +13,22 @@ entity top is
     CLK : in std_logic;
     x9, x8, x7, x6, x5, x4, x3, x2, x1 : in std_logic;
     CREATEBUTTON:   in std_logic;
-    LIGHT : out std_logic_vector(0 TO 3)
     --variables to segment driver
-    topsegA : out std logic;
-    topsegB : out std logic;
-    topsegC : out std logic;
-    topsegD : out std logic;
-    topsegE : out std logic;
-    topsegF : out std logic;
-    topsegG : out std logic;
-    topselect_display_A : out std logic;
-    topselect_display_B : out std logic;
-    topselect_display_C : out std logic;
-    topselect_display_D : out std logic;
-    topselect_display_E : out std logic;
-    topselect_display_F : out std logic;
-    topselect_display_G : out std logic;
-    topselect_display_H : out std logic
+    topsegA : out std_logic;
+    topsegB : out std_logic;
+    topsegC : out std_logic;
+    topsegD : out std_logic;
+    topsegE : out std_logic;
+    topsegF : out std_logic;
+    topsegG : out std_logic;
+    topselect_display_A : out std_logic;
+    topselect_display_B : out std_logic;
+    topselect_display_C : out std_logic;
+    topselect_display_D : out std_logic;
+    topselect_display_E : out std_logic;
+    topselect_display_F : out std_logic;
+    topselect_display_G : out std_logic;
+    topselect_display_H : out std_logic
     );
 end top;
 
@@ -164,29 +163,30 @@ component segmentdriver
     SELECT_DISPLAY_F : out STD_LOGIC;
     SELECT_DISPLAY_G : out STD_LOGIC;
     SELECT_DISPLAY_H : out STD_LOGIC;
-    CLK : in STD_LOGIC);
+    CLK : in STD_LOGIC
+    );
 end component;
 
 --Signals between Synchrnzr  and Edge detector
-signal x9_SE : in std_logic;
-signal x8_SE : in std_logic;
-signal x7_SE : in std_logic;
-signal x6_SE : in std_logic;
-signal x5_SE : in std_logic;
-signal x4_SE : in std_logic;
-signal x3_SE : in std_logic;
-signal x2_SE : in std_logic;
-signal x1_SE : in std_logic;
+signal x9_SE :  std_logic;
+signal x8_SE :  std_logic;
+signal x7_SE :  std_logic;
+signal x6_SE :  std_logic;
+signal x5_SE :  std_logic;
+signal x4_SE :  std_logic;
+signal x3_SE :  std_logic;
+signal x2_SE :  std_logic;
+signal x1_SE :  std_logic;
 --Signals between Edge detector and Encoder
-signal x9_Ee : in std_logic;
-signal x8_Ee : in std_logic;
-signal x7_Ee : in std_logic;
-signal x6_Ee : in std_logic;
-signal x5_Ee : in std_logic;
-signal x4_Ee : in std_logic;
-signal x3_Ee : in std_logic;
-signal x2_Ee : in std_logic;
-signal x1_Ee : in std_logic;
+signal x9_Ee :  std_logic;
+signal x8_Ee :  std_logic;
+signal x7_Ee :  std_logic;
+signal x6_Ee :  std_logic;
+signal x5_Ee :  std_logic;
+signal x4_Ee :  std_logic;
+signal x3_Ee :  std_logic;
+signal x2_Ee :  std_logic;
+signal x1_Ee :  std_logic;
 --Signals between Encoder and FSM
 signal buttonpressed_ef: std_logic_vector (INPUT_WIDTH downto 0); --Buttons pressed during game
 --signal createbutton_ef: std_logic;  --Button to entrer create mode
@@ -319,13 +319,13 @@ Inst_segmentdriver: segmentdriver PORT MAP(
     SEG_E => topsegE,
     SEG_F => topsegF,
     SEG_G => topsegG,
-    SELECT_DISPLAY_A => topselect_display_A,
-    SELECT_DISPLAY_B => topselect_display_B,
-    SELECT_DISPLAY_C => topselect_display_C,
-    SELECT_DISPLAY_D => topselect_display_D,
-    SELECT_DISPLAY_E => topselect_display_E,
-    SELECT_DISPLAY_F => topselect_display_F,
-    SELECT_DISPLAY_G => topselect_display_G,
-    SELECT_DISPLAY_H => topselect_display_H
+    SELECT_DISPLAY_A => topselect_display_H,
+    SELECT_DISPLAY_B => topselect_display_G,
+    SELECT_DISPLAY_C => topselect_display_F,
+    SELECT_DISPLAY_D => topselect_display_E,
+    SELECT_DISPLAY_E => topselect_display_D,
+    SELECT_DISPLAY_F => topselect_display_C,
+    SELECT_DISPLAY_G => topselect_display_B,
+    SELECT_DISPLAY_H => topselect_display_A
 );
 end behavioral;

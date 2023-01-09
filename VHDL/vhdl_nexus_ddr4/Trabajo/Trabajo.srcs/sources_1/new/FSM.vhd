@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 
 entity FSM is
    	generic(
-    INPUT_WIDTH: positive := 2;       -- Number of input's elements
+    INPUT_WIDTH: positive := 3;       -- Number of input's elements
     OUTPUT_WIDTH: positive := 3       -- Number of elements needed for output
     );
     port (
@@ -56,7 +56,7 @@ begin
                     next_state <= Create;
                 end if;
             when Create =>
-                if CREATEBUTTON = '0' and COMPLETE = '1' then
+                if COMPLETE = '1' then
                     next_state <= S3;
                 end if;
             when S3 =>
@@ -97,7 +97,7 @@ begin
         end case;
     end process;
     
-    output_decod: process (current_state, BUTTONPRESSED, RESULT1)
+    output_decod: process (current_state, BUTTONPRESSED, RESULT1, RESULT2, RESULT3, RESULT4)
     begin
 --        DISPLAY1  <= (OTHERS => '0');
 --        DISPLAY2  <= (OTHERS => '0');
@@ -107,8 +107,8 @@ begin
 --        DISPLAY6  <= (OTHERS => '0');
 --        DISPLAY7  <= (OTHERS => '0');
 --        DISPLAY8  <= (OTHERS => '0');
-        PASSWORD  <= "000";
-        ANSWER    <= "000";
+        PASSWORD  <= "0000";
+        ANSWER    <= "0000";
         case current_state is
             when Start  =>
                 DISPLAY1 <= "1010"; --g
@@ -119,16 +119,19 @@ begin
                 DISPLAY6 <= "1001"; --9
                 DISPLAY7 <= "0000"; --0
                 DISPLAY8 <= "0000"; --0
+                PASSWORD  <= "0000";
+                ANSWER    <= "0000";
             when Create =>
                 DISPLAY1 <= "1111"; ---
                 DISPLAY2 <= "1111"; ---
                 DISPLAY3 <= "1111"; ---
                 DISPLAY4 <= "1111"; ---
-                DISPLAY5 <= "1111"; ---
+                DISPLAY5 <= BUTTONPRESSED; ---
                 DISPLAY6 <= "1111"; ---
                 DISPLAY7 <= "1111"; ---
                 DISPLAY8 <= "1111"; ---
                 PASSWORD <= BUTTONPRESSED;
+                ANSWER    <= "0000";
             when S3 =>
                 DISPLAY1 <= "1110"; --º
                 DISPLAY2 <= "1110"; --º
@@ -139,6 +142,7 @@ begin
                 DISPLAY7 <= RESULT3;
                 DISPLAY8 <= RESULT4;
                 ANSWER   <= BUTTONPRESSED;
+                PASSWORD  <= "0000";
             when S2 =>
                 DISPLAY1 <= "1110"; --º
                 DISPLAY2 <= "1110"; --º
@@ -149,6 +153,7 @@ begin
                 DISPLAY7 <= RESULT3;
                 DISPLAY8 <= RESULT4;
                 ANSWER   <= BUTTONPRESSED;
+                PASSWORD  <= "0000";
             when S1 =>
                 DISPLAY1 <= "1110"; --º
                 DISPLAY2 <= "1110"; --º
@@ -159,6 +164,7 @@ begin
                 DISPLAY7 <= RESULT3;
                 DISPLAY8 <= RESULT4;
                 ANSWER   <= BUTTONPRESSED;
+                PASSWORD  <= "0000";
             when S0 =>
                 DISPLAY1 <= "1110"; --º
                 DISPLAY2 <= "1111"; ---
@@ -169,6 +175,7 @@ begin
                 DISPLAY7 <= RESULT3;
                 DISPLAY8 <= RESULT4;
                 ANSWER   <= BUTTONPRESSED;
+                PASSWORD  <= "0000";
             when Victory   =>
                 DISPLAY1 <= "1000"; --8
                 DISPLAY2 <= "1000"; --8
@@ -178,6 +185,8 @@ begin
                 DISPLAY6 <= "1000"; --8
                 DISPLAY7 <= "1000"; --8
                 DISPLAY8 <= "1000"; --8
+                PASSWORD  <= "0000";
+                ANSWER    <= "0000";
             when Lose    =>
                 DISPLAY1 <= "1111"; ---
                 DISPLAY2 <= "1111"; ---
@@ -187,6 +196,8 @@ begin
                 DISPLAY6 <= "1111"; ---
                 DISPLAY7 <= "1111"; ---
                 DISPLAY8 <= "1111"; ---
+                PASSWORD  <= "0000";
+                ANSWER    <= "0000";
             when others =>
                 DISPLAY1  <= (OTHERS => '0');
                 DISPLAY2  <= (OTHERS => '0');
@@ -196,8 +207,8 @@ begin
                 DISPLAY6  <= (OTHERS => '0');
                 DISPLAY7  <= (OTHERS => '0');
                 DISPLAY8  <= (OTHERS => '0');
-                PASSWORD  <= "000";
-                ANSWER    <= "000";
+                PASSWORD  <= "0000";
+                ANSWER    <= "0000";
         end case;
     end process;
 end behavioral;

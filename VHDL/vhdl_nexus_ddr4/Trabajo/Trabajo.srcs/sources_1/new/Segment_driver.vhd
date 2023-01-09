@@ -77,7 +77,7 @@ uut1: clk_divider PORT MAP(
         RESET => '0',
         DATA_CLK => clock_word);
         
-slow_clock <= clock_word(0); --Divisor del reloj, a 0 es un calco del mismo
+slow_clock <= clock_word(9); --Divisor del reloj, a 0 es un calco del mismo
 
 PROCESS (slow_clock)
 variable DISPLAY_SELECTion : STD_LOGIC_VECTOR(2 downto 0);

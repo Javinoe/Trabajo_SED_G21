@@ -26,4 +26,3 @@ begin
     end process;
 
 end Behavioral;
-end Behavioral;

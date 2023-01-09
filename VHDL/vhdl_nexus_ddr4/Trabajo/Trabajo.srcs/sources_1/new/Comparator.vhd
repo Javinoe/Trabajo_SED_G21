@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 entity Comparator is
    	generic(
     PASS_ELEMENTS: positive := 3;     -- Number of elements in the password
-    INPUT_WIDTH: positive := 2;       -- Number of input's elements
+    INPUT_WIDTH: positive := 3;       -- Number of input's elements
     OUTPUT_WIDTH: positive := 3       -- Number of elements needed for output
     );
     port(
@@ -41,9 +41,9 @@ begin
             RESULT3 <= "1111"; 
             RESULT4 <= "1111";
         elsif RESET = '1' then
-            if INPUT_PASSWORD /= "000" and password(0) = "000" then     -- Receiving a password when it is uncompleted    
+            if INPUT_PASSWORD /= "0000" and password(0) = "0000" then     -- Receiving a password when it is uncompleted    
                 for count in PASS_ELEMENTS downto 0 loop                
-                    if password(count) = "000" then
+                    if password(count) = "0000" then
                         password(count) := INPUT_PASSWORD;  -- Places it in the last free slot of the array
                         counter := count;
                         exit;
@@ -52,9 +52,9 @@ begin
                 if counter = 0 then
                     complete_i := '1';                      -- If all slots have been completed, sends a signal
                 end if;
-            elsif INPUT_ANSWER /= "000" then                -- Receiving an answer
+            elsif INPUT_ANSWER /= "0000" then                -- Receiving an answer
                 for count in PASS_ELEMENTS downto 0 loop 
-                    if answer(count) = "000" then
+                    if answer(count) = "0000" then
                         answer(count) := INPUT_ANSWER ;     -- Places it in the last free slot of the array
                         counter := count;
                         exit;
