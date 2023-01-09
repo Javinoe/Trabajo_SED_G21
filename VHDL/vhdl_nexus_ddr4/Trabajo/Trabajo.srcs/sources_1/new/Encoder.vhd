@@ -3,9 +3,8 @@ use IEEE.std_logic_1164.all;
 
 entity Encoder is
     port (
-     BUTTONPRESSED : out std_logic_vector(3 downto 0);
-     CREATEBUTTON :  out std_logic; 
-     x4, x3, x2, x1, x0 : in std_logic
+    BUTTONPRESSED : out std_logic_vector(3 downto 0);
+    x9, x8, x7, x6, x5, x4, x3, x2, x1 : in std_logic
     );
 end entity;
 
@@ -14,28 +13,29 @@ signal vbinariox : std_logic_vector (3 downto 0);
 signal createbutton_s : std_logic;
 begin
 
-    process ( x4, x3, x2, x1, x0) 
+    process ( x9, x8, x7, x6, x5, x4, x3, x2, x1) 
 
 begin 
-if    x0='1' then vbinariox <= "0001" ;
-createbutton_s <= '1';
-elsif x1='1' then 
-vbinariox <= "0010" ; 
-createbutton_s <= '1';
+if    x1='1' then 
+vbinariox <= "0001" ;
 elsif x2='1' then 
-vbinariox <= "0011" ; 
-createbutton_s <= '1';
+vbinariox <= "0010" ; 
 elsif x3='1' then 
-vbinariox <= "0100"; 
-createbutton_s <= '1';
+vbinariox <= "0011" ; 
 elsif x4='1' then 
+vbinariox <= "0100" ; 
+elsif x5='1' then 
 vbinariox <= "0101" ; 
-createbutton_s <= '1';
-        else vbinariox <= "0000";
-createbutton_s <= '0';
-        end if;
+elsif x6='1' then 
+vbinariox <= "0110" ; 
+elsif x7='1' then 
+vbinariox <= "0111" ; 
+elsif x8='1' then 
+vbinariox <= "1000" ; 
+elsif x9='1' then 
+vbinariox <= "1001" ;
+else vbinariox <= "0000";
+end if;
     end process;
     BUTTONPRESSED <= vbinariox;
-    CREATEBUTTON  <= createbutton_s;
 end Encoder;
-
