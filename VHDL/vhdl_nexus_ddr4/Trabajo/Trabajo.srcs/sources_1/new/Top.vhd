@@ -189,7 +189,7 @@ signal x2_Ee : in std_logic;
 signal x1_Ee : in std_logic;
 --Signals between Encoder and FSM
 signal buttonpressed_ef: std_logic_vector (INPUT_WIDTH downto 0); --Buttons pressed during game
-signal createbutton_ef: std_logic;  --Button to entrer create mode
+--signal createbutton_ef: std_logic;  --Button to entrer create mode
 -- Signals between FSM and Comparator
 signal complete_cf : std_logic;
 signal correct_cf : std_logic;
@@ -270,7 +270,7 @@ Inst_encoder: Encoder PORT MAP(
 Inst_FSM: FSM PORT MAP (
     RESET => RESET,
     CLK => CLK,
-    CREATEBUTTON => createbutton_ef,
+    CREATEBUTTON => CREATEBUTTON,
     BUTTONPRESSED => buttonpressed_ef,
     -- Comparator
     COMPLETE => complete_cf,
